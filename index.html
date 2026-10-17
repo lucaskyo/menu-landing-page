@@ -342,12 +342,30 @@ html, body {
 .filter {
   max-width: 100%;
 }
+.mobile-break {
+  display:none;
+}
 /* Remove os círculos decorativos laterais sem modificar o resto do visual. */
 body::before, body::after { display: none; }
 @media (max-width: 540px) {
   .hero p {
     max-width:100%;
+    padding:0;
+    font-size:clamp(11px,3.5vw,19px);
+    white-space:nowrap;
     text-align:center;
+  }
+  .eyebrow {
+    font-size:clamp(7px,2.5vw,12px);
+    letter-spacing:clamp(.08em,.8vw,.3em);
+    white-space:nowrap;
+  }
+  .mobile-break {
+    display:block;
+  }
+  h1 {
+    font-size:clamp(32px,10vw,72px);
+    white-space:nowrap;
   }
   .heading > div:first-child {
     width:100%;
@@ -373,7 +391,7 @@ body::before, body::after { display: none; }
  <div class="hero"><img class="logo" src="imagens/logo-hony.webp" alt="It's Hony Cookies"><p>cookies feitos para transformar qualquer<br>pausa em um momento especial.</p></div>
 </header>
 <main>
- <section aria-labelledby="menu-title"><div class="heading"><div><p class="eyebrow">feito com carinho, do nosso forno para você</p><h1 id="menu-title">Nosso cardápio</h1><p class="subtitle">consulte os sabores disponíveis para pronta-entrega.</p></div><nav class="filter" aria-label="Filtrar cardápio"><button class="active" data-filter="todos" type="button">Todos</button><button data-filter="disponiveis" type="button">Disponíveis</button><button data-filter="cookie" type="button">Cookies</button><button data-filter="marmitinha" type="button">Marmitinhas</button><button data-filter="kit" type="button">Kits</button></nav></div><div class="grid" id="produtos" aria-live="polite"></div></section>
+ <section aria-labelledby="menu-title"><div class="heading"><div><p class="eyebrow">feito com carinho, do nosso<br class="mobile-break"> forno para você</p><h1 id="menu-title">Nosso cardápio</h1><p class="subtitle">consulte os sabores disponíveis para pronta-entrega.</p></div><nav class="filter" aria-label="Filtrar cardápio"><button class="active" data-filter="todos" type="button">Todos</button><button data-filter="disponiveis" type="button">Disponíveis</button><button data-filter="cookie" type="button">Cookies</button><button data-filter="marmitinha" type="button">Marmitinhas</button><button data-filter="kit" type="button">Kits</button></nav></div><div class="grid" id="produtos" aria-live="polite"></div></section>
  <section class="order" id="pedido"><p class="eyebrow">um docinho muda o dia</p><h2>Deu vontade?</h2><p>Confira a disponibilidade e faça seu pedido pelo Instagram.<br>Respondemos por mensagem direta.</p><a class="cta" href="https://www.instagram.com/hony.cookies/" target="_blank" rel="noopener noreferrer">Fazer pedido pelo Instagram ↗</a><a class="secondary" href="https://wa.me/5515996858617" target="_blank" rel="noopener noreferrer">ou fale pelo WhatsApp</a></section>
 </main>
 <footer><span>© Hony Cookies · feito em Itapetininga, SP</span><span>@hony.cookies</span></footer>

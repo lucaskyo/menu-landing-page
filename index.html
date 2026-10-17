@@ -30,7 +30,7 @@ h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(38px,5vw,60px);fo
 footer{border-top:1px solid var(--linha);padding:22px 0 32px;display:flex;justify-content:space-between;gap:10px;color:var(--marrom);font-size:11px;letter-spacing:.04em}
 .empty{grid-column:1/-1;text-align:center;padding:45px;color:var(--marrom)}
 @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.heading{align-items:start;flex-direction:column}.filter{justify-content:flex-start}.hero{padding:26px 0 47px}}
-@media(max-width:540px){.container{width:calc(100% - 28px)}.topline{padding-top:15px}.local{font-size:10px}.hero{padding:28px 0 44px}.logo{width:95%}.hero p{font-size:18px;padding:0 10px}.heading{padding:43px 0 24px}.grid{gap:11px;padding-bottom:52px}.product{padding:12px 11px 16px;border-radius:10px}.brand{font-size:8px;letter-spacing:.1em}.status{font-size:9px;padding:5px 7px}.cardname{font-size:19px}.price{font-size:17px}.description{font-size:12px;line-height:1.55}.photo{margin:6px 0}.divider{margin:14px 0 10px}.footnote{font-size:9px}.order{padding:45px 0 60px}footer{flex-direction:column;align-items:center;text-align:center}}
+@media(max-width:540px){.container{width:calc(100% - 28px)}.topline{padding-top:15px}.local{font-size:10px}.hero{padding:28px 0 44px}.logo{width:95%}.hero p{font-size:14px;padding:0 10px}.heading{padding:43px 0 24px}.eyebrow{font-size:8px}.grid{gap:11px;padding-bottom:52px}.product{padding:12px 11px 16px;border-radius:10px}.brand{font-size:8px;letter-spacing:.1em}.status{font-size:9px;padding:5px 7px}.cardname{font-size:19px}.price{font-size:17px}.description{font-size:12px;line-height:1.55}.photo{margin:6px 0}.divider{margin:14px 0 10px}.footnote{font-size:9px}.order{padding:45px 0 60px}footer{flex-direction:column;align-items:center;text-align:center}}
 
 body{position:relative;overflow-x:hidden;background:
  radial-gradient(circle at 8% 4%,rgba(255,255,255,.72) 0 120px,transparent 350px),
@@ -370,7 +370,7 @@ body::before, body::after { display: none; }
 <div class="container">
 <header>
  <div class="topline"><a class="local" href="#pedido">Itapetininga · Faça seu pedido</a></div>
- <div class="hero"><img class="logo" src="imagens/logo-hony.webp" alt="It's Hony Cookies"><p>cookies feitos para transformar qualquer pausa em um momento especial.</p></div>
+ <div class="hero"><img class="logo" src="imagens/logo-hony.webp" alt="It's Hony Cookies"><p>cookies feitos para transformar qualquer<br>pausa em um momento especial.</p></div>
 </header>
 <main>
  <section aria-labelledby="menu-title"><div class="heading"><div><p class="eyebrow">feito com carinho, do nosso forno para você</p><h1 id="menu-title">Nosso cardápio</h1><p class="subtitle">consulte os sabores disponíveis para pronta-entrega.</p></div><nav class="filter" aria-label="Filtrar cardápio"><button class="active" data-filter="todos" type="button">Todos</button><button data-filter="disponiveis" type="button">Disponíveis</button><button data-filter="cookie" type="button">Cookies</button><button data-filter="marmitinha" type="button">Marmitinhas</button><button data-filter="kit" type="button">Kits</button></nav></div><div class="grid" id="produtos" aria-live="polite"></div></section>

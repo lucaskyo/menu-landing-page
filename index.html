@@ -143,10 +143,12 @@ h1 {
 }
 .filter {
   padding:7px;
-  border:1px solid var(--linha);
+  border:1px solid rgba(255,255,255,.4);
   border-radius:999px;
-  background:rgba(255,255,255,.7);
-  box-shadow:0 8px 22px rgba(100,55,35,.05);
+  background:rgba(255,255,255,.25);
+  box-shadow:0 8px 32px 0 rgba(0,0,0,.1);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
 }
 .filter button {
   padding:11px 18px;
@@ -343,6 +345,14 @@ html, body {
 /* Remove os círculos decorativos laterais sem modificar o resto do visual. */
 body::before, body::after { display: none; }
 @media (max-width: 540px) {
+  .hero p {
+    max-width:100%;
+    text-align:center;
+  }
+  .heading > div:first-child {
+    width:100%;
+    text-align:center;
+  }
   .filter {
     flex-wrap: wrap;
     justify-content: center;
@@ -360,7 +370,7 @@ body::before, body::after { display: none; }
 <div class="container">
 <header>
  <div class="topline"><a class="local" href="#pedido">Itapetininga · Faça seu pedido</a></div>
- <div class="hero"><img class="logo" src="imagens/logo-hony.webp" alt="It's Hony Cookies"><p>cookies feitos para transformar qualquer<br>pausa em um momento especial.</p></div>
+ <div class="hero"><img class="logo" src="imagens/logo-hony.webp" alt="It's Hony Cookies"><p>cookies feitos para transformar qualquer pausa em um momento especial.</p></div>
 </header>
 <main>
  <section aria-labelledby="menu-title"><div class="heading"><div><p class="eyebrow">feito com carinho, do nosso forno para você</p><h1 id="menu-title">Nosso cardápio</h1><p class="subtitle">consulte os sabores disponíveis para pronta-entrega.</p></div><nav class="filter" aria-label="Filtrar cardápio"><button class="active" data-filter="todos" type="button">Todos</button><button data-filter="disponiveis" type="button">Disponíveis</button><button data-filter="cookie" type="button">Cookies</button><button data-filter="marmitinha" type="button">Marmitinhas</button><button data-filter="kit" type="button">Kits</button></nav></div><div class="grid" id="produtos" aria-live="polite"></div></section>

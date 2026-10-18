@@ -19,7 +19,7 @@
 .heading{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:63px 0 30px}
 .eyebrow{font-size:11px;letter-spacing:.26em;color:var(--vermelho);font-weight:bold;text-transform:uppercase;margin:0 0 10px}
 h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(38px,5vw,60px);font-weight:normal;letter-spacing:-.035em;margin:0 0 12px;color:var(--vermelho)}
-.subtitle{font-size:14px;color:var(--marrom);margin:0;line-height:1.6}
+.subtitle{font-family:Georgia,'Times New Roman',serif;font-size:14px;color:var(--marrom);margin:0;line-height:1.6}
 .filter{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.filter button{background:transparent;border:1px solid var(--linha);padding:10px 15px;border-radius:100px;color:var(--marrom);cursor:pointer;font-size:12px}.filter button.active,.filter button:hover{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding-bottom:85px}
 .product{background:var(--card);border:1px solid var(--linha);border-radius:13px;padding:19px 20px 23px;display:flex;flex-direction:column;min-width:0;transition:transform .2s}.product:hover{transform:scale(1.04)}
@@ -61,6 +61,7 @@ body::after{top:920px;right:-110px}
 .product.unavailable:hover .photo img{transform:none}
 .cardname{transition:color .2s}
 .product:hover .cardname{color:var(--vermelho)}
+.product.is-filtering{will-change:transform,opacity}
 .status{font-weight:700}
 .cta{box-shadow:0 10px 20px rgba(201,43,36,.2);transition:background .2s,transform .2s,box-shadow .2s}
 .cta:hover{transform:translateY(-2px);box-shadow:0 13px 24px rgba(201,43,36,.28)}
@@ -121,7 +122,7 @@ body::before,body::after {
 }
 .hero p {
   max-width:590px;
-  font-size:clamp(19px,2.4vw,27px);
+  font-size:clamp(11px,3.5vw,19px);
   color:var(--marrom);
 }
 .heading {
@@ -138,8 +139,10 @@ h1 {
   line-height:.95;
 }
 .subtitle {
-  max-width:420px;
-  font-size:15px;
+  max-width:none;
+  font-size:clamp(11px,3.5vw,19px);
+  font-style:italic;
+  white-space:nowrap;
 }
 .filter {
   padding:7px;
@@ -371,6 +374,13 @@ body::before, body::after { display: none; }
     width:100%;
     text-align:center;
   }
+  .subtitle {
+    width:100%;
+    max-width:none;
+    font-size:clamp(11px,3.5vw,19px);
+    line-height:1.4;
+    white-space:nowrap;
+  }
   .filter {
     flex-wrap: wrap;
     justify-content: center;
@@ -382,16 +392,54 @@ body::before, body::after { display: none; }
     white-space: nowrap;
   }
 }
+.filter {
+  position:relative;
+  isolation:isolate;
+}
+.filter::before {
+  content:"";
+  position:absolute;
+  z-index:0;
+  top:var(--pill-y,7px);
+  left:var(--pill-x,7px);
+  width:var(--pill-width,0px);
+  height:var(--pill-height,0px);
+  border-radius:999px;
+  background:var(--vermelho);
+  box-shadow:0 5px 12px rgba(201,43,36,.16);
+  pointer-events:none;
+  transition:left .45s cubic-bezier(.22,1,.36,1),top .45s cubic-bezier(.22,1,.36,1),width .45s cubic-bezier(.22,1,.36,1),height .45s cubic-bezier(.22,1,.36,1);
+}
+.filter button,
+.filter button:hover,
+.filter button.active,
+.filter button.active:hover {
+  position:relative;
+  z-index:1;
+  background:transparent;
+  border-color:transparent;
+  color:var(--marrom);
+  transform:none;
+}
+.filter button.active,
+.filter button.active:hover {
+  color:#fff;
+}
+@media(prefers-reduced-motion:reduce) {
+  .filter::before {
+    transition:none;
+  }
+}
 </style>
 </head>
 <body>
 <div class="container">
 <header>
  <div class="topline"><a class="local" href="#pedido">Itapetininga · Faça seu pedido</a></div>
- <div class="hero"><img class="logo" src="imagens/logo-hony.webp" alt="It's Hony Cookies"><p>cookies feitos para transformar qualquer<br>pausa em um momento especial.</p></div>
+ <div class="hero"><img class="logo" src="imagens/logo-hony.webp" alt="It's Hony Cookies"><p>Cookies feitos para transformar qualquer<br>pausa em um momento especial.</p></div>
 </header>
 <main>
- <section aria-labelledby="menu-title"><div class="heading"><div><p class="eyebrow">feito com carinho, do nosso<br class="mobile-break"> forno para você</p><h1 id="menu-title">Nosso cardápio</h1><p class="subtitle">consulte os sabores disponíveis para pronta-entrega.</p></div><nav class="filter" aria-label="Filtrar cardápio"><button class="active" data-filter="todos" type="button">Todos</button><button data-filter="disponiveis" type="button">Disponíveis</button><button data-filter="cookie" type="button">Cookies</button><button data-filter="marmitinha" type="button">Marmitinhas</button><button data-filter="kit" type="button">Kits</button></nav></div><div class="grid" id="produtos" aria-live="polite"></div></section>
+ <section aria-labelledby="menu-title"><div class="heading"><div><p class="eyebrow">feito com carinho, do nosso<br class="mobile-break"> forno para você</p><h1 id="menu-title">Nosso cardápio</h1><p class="subtitle">Consulte os sabores disponíveis para pronta-entrega.</p></div><nav class="filter" aria-label="Filtrar cardápio"><button class="active" data-filter="todos" type="button">Todos</button><button data-filter="disponiveis" type="button">Disponíveis</button><button data-filter="cookie" type="button">Cookies</button><button data-filter="marmitinha" type="button">Marmitinhas</button><button data-filter="kit" type="button">Kits</button></nav></div><div class="grid" id="produtos" aria-live="polite"></div></section>
  <section class="order" id="pedido"><p class="eyebrow">um docinho muda o dia</p><h2>Deu vontade?</h2><p>Confira a disponibilidade e faça seu pedido pelo Instagram.<br>Respondemos por mensagem direta.</p><a class="cta" href="https://www.instagram.com/hony.cookies/" target="_blank" rel="noopener noreferrer">Fazer pedido pelo Instagram ↗</a><a class="secondary" href="https://wa.me/5515996858617" target="_blank" rel="noopener noreferrer">ou fale pelo WhatsApp</a></section>
 </main>
 <footer><span>© Hony Cookies · feito em Itapetininga, SP</span><span>@hony.cookies</span></footer>
@@ -422,13 +470,74 @@ const produtos = [
 /* FIM DA LISTA DE PRODUTOS */
 const formatarPreco = valor => valor.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const escapeHTML = valor => String(valor).replace(/[&<>"']/g,caractere => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[caractere]));
-function renderizar(filtro='todos') {
+let timerAnimacaoCards;
+function animarCards(area, cardsAntes) {
+ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+ const cardsDepois = [...area.querySelectorAll('.product')];
+ const duracao = 480;
+ clearTimeout(timerAnimacaoCards);
+
+ cardsDepois.forEach(card => {
+  const posicaoAnterior = cardsAntes.get(card.dataset.productKey);
+  const posicaoAtual = card.getBoundingClientRect();
+  card.classList.add('is-filtering');
+  card.style.transition = 'none';
+
+  if (posicaoAnterior) {
+   const deslocamentoX = posicaoAnterior.left - posicaoAtual.left;
+   const deslocamentoY = posicaoAnterior.top - posicaoAtual.top;
+   card.style.transform = `translate(${deslocamentoX}px,${deslocamentoY}px)`;
+  } else {
+   card.style.transform = 'translateY(18px) scale(.96)';
+   card.style.opacity = '0';
+  }
+ });
+
+ requestAnimationFrame(() => {
+  cardsDepois.forEach(card => {
+   card.style.transition = `transform ${duracao}ms cubic-bezier(.22,1,.36,1),opacity ${Math.round(duracao * .75)}ms ease`;
+   card.style.transform = '';
+   card.style.opacity = '';
+  });
+ });
+
+ timerAnimacaoCards = window.setTimeout(() => {
+  cardsDepois.forEach(card => {
+   card.classList.remove('is-filtering');
+   card.style.transition = '';
+   card.style.transform = '';
+   card.style.opacity = '';
+  });
+ }, duracao + 40);
+}
+function renderizar(filtro='todos', animar=false) {
  const lista = produtos.filter(p => p.visivel !== false && (filtro==='todos' || (filtro==='disponiveis' ? p.disponivel : p.categoria===filtro))).sort((a,b)=>a.preco-b.preco);
  const area = document.getElementById('produtos');
- area.innerHTML = lista.length ? lista.map(p => `<article class="product ${p.disponivel ? '' : 'unavailable'}"><div class="cardtop"><span class="brand">HONY COOKIES</span><span class="status ${p.disponivel ? '' : 'sold'}">${p.disponivel ? '● Disponível' : '× Esgotado'}</span></div><div class="photo">${p.imagem ? `<img src="${escapeHTML(p.imagem)}" alt="${escapeHTML(p.nome)}">` : ''}</div><h2 class="cardname">${escapeHTML(p.nome)}</h2><p class="price">${formatarPreco(p.preco)}</p><p class="description">${escapeHTML(p.descricao)}</p><div class="divider"></div><span class="footnote">${p.disponivel ? 'Feito artesanalmente ♡' : 'temporariamente indisponível'}</span></article>`).join('') : '<p class="empty">Nenhum produto nesta categoria no momento.</p>';
+ const cardsAntes = animar ? new Map([...area.querySelectorAll('.product')].map(card => [card.dataset.productKey, card.getBoundingClientRect()])) : new Map();
+ area.setAttribute('aria-busy', animar ? 'true' : 'false');
+ area.innerHTML = lista.length ? lista.map(p => `<article class="product ${p.disponivel ? '' : 'unavailable'}" data-product-key="${escapeHTML(p.nome)}"><div class="cardtop"><span class="brand">HONY COOKIES</span><span class="status ${p.disponivel ? '' : 'sold'}">${p.disponivel ? '● Disponível' : '× Esgotado'}</span></div><div class="photo">${p.imagem ? `<img src="${escapeHTML(p.imagem)}" alt="${escapeHTML(p.nome)}">` : ''}</div><h2 class="cardname">${escapeHTML(p.nome)}</h2><p class="price">${formatarPreco(p.preco)}</p><p class="description">${escapeHTML(p.descricao)}</p><div class="divider"></div><span class="footnote">${p.disponivel ? 'Feito artesanalmente ♡' : 'temporariamente indisponível'}</span></article>`).join('') : '<p class="empty">Nenhum produto nesta categoria no momento.</p>';
+ if (animar && lista.length) animarCards(area, cardsAntes);
+ if (animar) window.setTimeout(() => area.setAttribute('aria-busy', 'false'), 520);
 }
-document.querySelectorAll('[data-filter]').forEach(botao => botao.addEventListener('click', () => {document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active'));botao.classList.add('active');renderizar(botao.dataset.filter)}));
+const filtro = document.querySelector('.filter');
+const botoesFiltro = document.querySelectorAll('[data-filter]');
+function posicionarPill() {
+ const botaoAtivo = filtro.querySelector('.active');
+ if (!botaoAtivo) return;
+ filtro.style.setProperty('--pill-x', `${botaoAtivo.offsetLeft}px`);
+ filtro.style.setProperty('--pill-y', `${botaoAtivo.offsetTop}px`);
+ filtro.style.setProperty('--pill-width', `${botaoAtivo.offsetWidth}px`);
+ filtro.style.setProperty('--pill-height', `${botaoAtivo.offsetHeight}px`);
+}
+botoesFiltro.forEach(botao => botao.addEventListener('click', () => {
+ botoesFiltro.forEach(b => b.classList.remove('active'));
+ botao.classList.add('active');
+ posicionarPill();
+ renderizar(botao.dataset.filter, true);
+}));
 renderizar();
+posicionarPill();
+window.addEventListener('resize', posicionarPill);
 </script>
 </body>
 </html>

@@ -4,7 +4,7 @@ Landing page responsiva do cardápio da Hony Cookies, uma confeitaria artesanal 
 
 Você pode ver o site funcionando ao vivo [clicando aqui.](https://lucaskyo.github.io/menu-landing-page/)
 
-## Funcionalidades
+## 📌 Funcionalidades
 
 - Layout responsivo para celular, tablet e desktop.
 - Catálogo de cookies, marmitinhas e kits.
@@ -14,13 +14,13 @@ Você pode ver o site funcionando ao vivo [clicando aqui.](https://lucaskyo.gith
 - Imagens dos produtos armazenadas localmente.
 - HTML semântico, meta description, favicon e suporte a navegação por teclado.
 
-## Tecnologias
+## 💻 Tecnologias
 
 - HTML5
 - CSS3
 - JavaScript 
 
-## Estrutura do projeto
+## 📁 Estrutura do projeto
 
 ```text
 .
@@ -32,7 +32,7 @@ Você pode ver o site funcionando ao vivo [clicando aqui.](https://lucaskyo.gith
 └── README.md
 ```
 
-## Atualizando o cardápio
+## 🛠️ Atualizando o cardápio
 
 Os produtos ficam na constante `produtos`, dentro do arquivo `index.html`. Para adicionar ou alterar um item, edite um objeto seguindo este formato:
 
@@ -60,7 +60,7 @@ Os produtos ficam na constante `produtos`, dentro do arquivo `index.html`. Para 
 
 Os produtos visíveis são ordenados automaticamente pelo preço. Após atualizar o arquivo, salve e publique a alteração no serviço de hospedagem utilizado.
 
-## Personalização
+## 🎨️ Personalização
 
 Os textos, links, cores e estilos estão no próprio `index.html`:
 
@@ -71,7 +71,7 @@ Os textos, links, cores e estilos estão no próprio `index.html`:
 
 Ao substituir imagens, mantenha os caminhos referenciados no catálogo e prefira arquivos WebP otimizados para preservar o desempenho.
 
-## Publicação
+## 🚀 Publicação
 
 O projeto pode ser publicado em qualquer serviço que hospede arquivos estáticos, como GitHub Pages, Netlify, Vercel ou hospedagem compartilhada. Basta disponibilizar `index.html` e a pasta `imagens/` no diretório público.
 
